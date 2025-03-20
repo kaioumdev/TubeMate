@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { YOUTUBE_VIDEOS_API } from '../utils/contants'
+import VideoCard from './VideoCard'
 
 const VideoContainer = () => {
     const [videos, setVideos] = useState([])
@@ -13,7 +14,9 @@ const VideoContainer = () => {
         setVideos(json.items)
     }
     return (
-        <div>VideoContainer</div>
+        <div>
+            <VideoCard info={videos[0]}></VideoCard>
+        </div>
     )
 }
 
