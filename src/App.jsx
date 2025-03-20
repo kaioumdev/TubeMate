@@ -1,4 +1,4 @@
-import './App.css'
+import Body from './components/Body'
 import Head from './components/Head'
 
 function App() {
@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Head></Head>
+      <Body></Body>
     </>
   )
 }
