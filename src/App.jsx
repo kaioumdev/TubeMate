@@ -1,11 +1,11 @@
 import Body from './components/Body'
-import Head from './components/Head'
+import Header from './components/Header'
 
 function App() {
 
   return (
     <>
-      <Head></Head>
+      <Header></Header>
       <Body></Body>
     </>
   )
