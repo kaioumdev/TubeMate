@@ -19,9 +19,9 @@ const VideoCard = ({ info }) => {
     )
 }
 
-export const AdVideoCard = (VideoCard) => {
+export const AdVideoCard = ({ info }) => {
     return (<div className='p-1 m-1 border border-red-900'>
-        <VideoCard></VideoCard>
+        <VideoCard info={info}></VideoCard>
     </div>)
 }
 
