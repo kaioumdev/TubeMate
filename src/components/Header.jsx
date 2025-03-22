@@ -1,17 +1,27 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../utils/redux/appSlice';
 import { YOUTUBE_SEARCH_API } from '../utils/contants';
+import { cacheResults } from '../utils/redux/searchSlice';
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchSuggestions, setSearchSuggestions] = useState([]);
-    const [showSuggestions, setShowSuggestions] = useState(false)
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const dispatch = useDispatch();
+
+    const searchCache = useSelector((store) => store.search)
 
     useEffect(() => {
 
-        const timer = setTimeout(() => getSearchSuggestions(), 200)
+        const timer = setTimeout(() => {
+            if (searchCache[searchQuery]) {
+                setSearchSuggestions(searchCache[searchQuery]);
+            } else {
+                getSearchSuggestions()
+            }
+        }, 200)
         return () => {
             clearTimeout(timer)
         }
@@ -21,8 +31,8 @@ const Header = () => {
         const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
         const json = await data.json()
         setSearchSuggestions(json[1])
+        dispatch(cacheResults({ [searchQuery]: json[1] }));
     }
-    const dispatch = useDispatch();
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())
     }
