@@ -1,8 +1,11 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/redux/appSlice';
 
 const Header = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    console.log(searchQuery)
     const dispatch = useDispatch();
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())
@@ -16,7 +19,7 @@ const Header = () => {
                 </a>
             </div>
             <div className='col-span-10 px-10 text-center'>
-                <input className='w-1/2 border border-gray-400 p-2 rounded-l-full' type="text" placeholder="Search" />
+                <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='w-1/2 border border-gray-400 p-2 rounded-l-full' type="text" placeholder="Search" />
                 <button className='border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full'>🔍</button>
             </div>
             <div className='col-span-1'>
