@@ -1,11 +1,21 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/redux/appSlice';
+import { YOUTUBE_SEARCH_API } from '../utils/contants';
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    console.log(searchQuery)
+
+    useEffect(() => {
+        getSearchSuggestions()
+    }, [searchQuery])
+
+    const getSearchSuggestions = async () => {
+        const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
+        const json = await data.json()
+        console.log(json[1])
+    }
     const dispatch = useDispatch();
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())
