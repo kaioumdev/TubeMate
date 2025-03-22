@@ -10,7 +10,9 @@ const Header = () => {
     useEffect(() => {
 
         const timer = setTimeout(() => getSearchSuggestions(), 200)
-        return () => clearTimeout(timer)
+        return () => {
+            clearTimeout(timer)
+        }
     }, [searchQuery])
 
     const getSearchSuggestions = async () => {
@@ -30,9 +32,20 @@ const Header = () => {
                     <img className='h-8 mx-5' src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="youtube-logo" />
                 </a>
             </div>
-            <div className='col-span-10 px-10 text-center'>
-                <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='w-1/2 border border-gray-400 p-2 rounded-l-full' type="text" placeholder="Search" />
-                <button className='border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full'>🔍</button>
+            <div className='col-span-10 px-10'>
+                <div>
+                    <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='w-1/2 border border-gray-400 p-2 rounded-l-full' type="text" placeholder="Search" />
+                    <button className='border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full'>🔍</button>
+                </div>
+                <div className='fixed bg-white py-2 px-5 w-[43rem] shadow-lg rounded-lg border border-gray-100'>
+                    <ul>
+                        <li className='p-2 shadow-sm hover:bg-gray-100'>🔍 Search Suggestions</li>
+                        <li className='p-2 shadow-sm hover:bg-gray-100'>🔍 Search Suggestions</li>
+                        <li className='p-2 shadow-sm hover:bg-gray-100'>🔍 Search Suggestions</li>
+                        <li className='p-2 shadow-sm hover:bg-gray-100'>🔍 Search Suggestions</li>
+                        <li className='p-2 shadow-sm hover:bg-gray-100'>🔍 Search Suggestions</li>
+                    </ul>
+                </div>
             </div>
             <div className='col-span-1'>
                 <img className='h-8' src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="User" />
