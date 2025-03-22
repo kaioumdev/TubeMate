@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import ChatMessage from './ChatMessage'
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../utils/redux/chatSlice';
+import { generateRandomName } from '../utils/helper';
 
 const LiveChat = () => {
     const dispatch = useDispatch();
     const chatMessage = useSelector((store) => store.chat.message)
     useEffect(() => {
         const polling = setInterval(() => {
-            dispatch(addMessage({ name: "Kaioum Islam", message: "This is my fevaroite react library" }))
+            dispatch(addMessage({ name: generateRandomName(), message: "This is my fevaroite react library" }))
         }, 2000)
         return () => {
             clearTimeout(polling)
