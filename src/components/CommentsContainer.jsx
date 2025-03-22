@@ -95,11 +95,17 @@ const Comment = ({ data }) => {
     )
 }
 
+const CommentLists = ({ comments }) => {
+    return comments.map((comment, index) => (
+        <Comment key={index} data={comment}></Comment>
+    ))
+}
+
 const CommentsContainer = () => {
     return (
         <div className='m-5 p-2'>
             <h1 className='text-2xl font-bold'>Comments: </h1>
-            <Comment data={commentsData[0]}></Comment>
+            <Comment comments={commentsData[0]}></Comment>
         </div>
     )
 }
