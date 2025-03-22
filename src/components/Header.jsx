@@ -8,7 +8,9 @@ const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-        getSearchSuggestions()
+
+        const timer = setTimeout(() => getSearchSuggestions(), 200)
+        return () => clearTimeout(timer)
     }, [searchQuery])
 
     const getSearchSuggestions = async () => {
