@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChatMessage from './ChatMessage'
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../utils/redux/chatSlice';
@@ -6,7 +6,8 @@ import { generateRandomName, makeRandomMessage } from '../utils/helper';
 
 const LiveChat = () => {
     const dispatch = useDispatch();
-    const chatMessage = useSelector((store) => store.chat.message)
+    const chatMessage = useSelector((store) => store.chat.message);
+    const [liveMessage, setLiveMessage] = useState("")
     useEffect(() => {
         const polling = setInterval(() => {
             dispatch(addMessage({ name: generateRandomName(), message: makeRandomMessage(20) }))
@@ -24,10 +25,14 @@ const LiveChat = () => {
                     }
                 </div>
             </div>
-            <div className='flex w-full p-2 border border-black'>
-                <input className='w-96' type='text' />
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                console.log('submit', liveMessage)
+                dispatch(addMessage({ name: 'Kaioum Islam', message: liveMessage }))
+            }} className='flex w-full p-2 border border-black'>
+                <input className='w-96 border border-black' type='text' value={liveMessage} onChange={(e) => setLiveMessage(e.target.value)} />
                 <button className='px-2 mx-2 bg-green-100'>Send</button>
-            </div>
+            </form>
         </>
     )
 }
