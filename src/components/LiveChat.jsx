@@ -16,11 +16,19 @@ const LiveChat = () => {
         }
     }, [])
     return (
-        <div className='w-full h-[600px] ml-2 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse'>
-            {
-                chatMessage.map((message, index) => <ChatMessage key={index} name={message.name} message={message.message} />)
-            }
-        </div>
+        <>
+            <div className='w-full h-[600px] ml-2 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse'>
+                <div>
+                    {
+                        chatMessage.map((message, index) => <ChatMessage key={index} name={message.name} message={message.message} />)
+                    }
+                </div>
+            </div>
+            <div className='flex w-full p-2 border border-black'>
+                <input className='w-96' type='text' />
+                <button className='px-2 mx-2 bg-green-100'>Send</button>
+            </div>
+        </>
     )
 }
 
