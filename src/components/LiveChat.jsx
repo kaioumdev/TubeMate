@@ -10,7 +10,7 @@ const LiveChat = () => {
     useEffect(() => {
         const polling = setInterval(() => {
             dispatch(addMessage({ name: generateRandomName(), message: makeRandomMessage(20) }))
-        }, 2000)
+        }, 500)
         return () => {
             clearTimeout(polling)
         }
