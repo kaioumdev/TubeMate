@@ -27,7 +27,6 @@ const LiveChat = () => {
             </div>
             <form onSubmit={(e) => {
                 e.preventDefault()
-                console.log('submit', liveMessage)
                 dispatch(addMessage({ name: 'Kaioum Islam', message: liveMessage }))
                 setLiveMessage("")
             }} className='flex w-full p-2 border border-black'>
