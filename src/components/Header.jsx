@@ -34,6 +34,15 @@ const Header = () => {
         setSearchSuggestions(json[1])
         dispatch(cacheResults({ [searchQuery]: json[1] }));
     }
+
+    const showSearchResults = () => {
+        setShowSuggestions(false)
+        setSearchQuery('')
+        dispatch(cacheResults({ [searchQuery]: searchSuggestions }));
+        // Navigate to search results page
+        window.location.href = '/search?query=' + searchQuery;
+
+    }
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())
     }
@@ -59,7 +68,7 @@ const Header = () => {
                         <ul>
                             {
                                 searchSuggestions.map((suggestion) =>
-                                    <li key={suggestion} className='p-2 px-3 shadow-sm hover:bg-gray-100 cursor-pointer'>🔍 {suggestion}</li>
+                                    <li onClick={showSearchResults} key={suggestion} className='p-2 px-3 shadow-sm hover:bg-gray-100 cursor-pointer'>🔍 {suggestion}</li>
 
                                 )
                             }
