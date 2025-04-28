@@ -36,11 +36,11 @@ const Header = () => {
     }
 
     const showSearchResults = () => {
-        setShowSuggestions(false)
-        setSearchQuery('')
-        dispatch(cacheResults({ [searchQuery]: searchSuggestions }));
-        // Navigate to search results page
-        window.location.href = '/search?query=' + searchQuery;
+        // setShowSuggestions(false)
+        // setSearchQuery('')
+        // dispatch(cacheResults({ [searchQuery]: searchSuggestions }));
+        // // Navigate to search results page
+        // window.location.href = '/search?query=' + searchQuery;
     }
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())
