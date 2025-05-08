@@ -28,20 +28,19 @@ const Header = () => {
     }, [searchQuery])
 
     const getSearchSuggestions = async () => {
-        const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
-        const json = await data.json()
-        console.log(json)
-        setSearchSuggestions(json[1])
-        dispatch(cacheResults({ [searchQuery]: json[1] }));
+        try {
+            const proxyUrl = "https://corsproxy.io/?"  // Use a public proxy
+            const targetUrl = YOUTUBE_SEARCH_API + searchQuery;
+            const data = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+            const json = await data.json();
+            console.log(json);
+            setSearchSuggestions(json[1]);
+            dispatch(cacheResults({ [searchQuery]: json[1] }));
+        } catch (error) {
+            console.error("Failed to fetch search suggestions:", error);
+        }
     }
 
-    const showSearchResults = () => {
-        // setShowSuggestions(false)
-        // setSearchQuery('')
-        // dispatch(cacheResults({ [searchQuery]: searchSuggestions }));
-        // // Navigate to search results page
-        // window.location.href = '/search?query=' + searchQuery;
-    }
     const toggleMenuHandler = () => {
         dispatch(toggleMenu())
     }
@@ -67,7 +66,7 @@ const Header = () => {
                         <ul>
                             {
                                 searchSuggestions.map((suggestion) =>
-                                    <li onClick={showSearchResults} key={suggestion} className='p-2 px-3 shadow-sm hover:bg-gray-100 cursor-pointer'>🔍 {suggestion}</li>
+                                    <li key={suggestion} className='p-2 px-3 shadow-sm hover:bg-gray-100 cursor-pointer'>🔍 {suggestion}</li>
 
                                 )
                             }
