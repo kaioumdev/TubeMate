@@ -1,4 +1,4 @@
-const VITE_GOOGLE_API_KEY = "AIzaSyDJ-ajy0m5UU4gIbvZSigDYf6ZMNicnAt8"
+const VITE_GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 export const LIVE_CHAT_COUNT = 25;
 

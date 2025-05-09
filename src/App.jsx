@@ -5,6 +5,7 @@ import store from './utils/redux/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import WatchPage from './components/WatchPage';
+import SearchResults from './components/SearchResults';
 
 const appRouter = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ function App() {
     <Provider store={store}>
       <div>
         <Header></Header>
+        <SearchResults></SearchResults>
         <RouterProvider router={appRouter}></RouterProvider>
       </div>
     </Provider>
