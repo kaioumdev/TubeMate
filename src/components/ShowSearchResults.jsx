@@ -1,9 +1,9 @@
-// import React from 'react'
+import React from 'react'
 
-// const ShowSearchResults = () => {
-//     return (
-//         <div>ShowSearchResults</div>
-//     )
-// }
+const ShowSearchResults = () => {
+    return (
+        <div>ShowSearchResults</div>
+    )
+}
 
-// export default ShowSearchResults
+export default ShowSearchResults
