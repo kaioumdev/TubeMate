@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonList from './ButtonList'
 import VideoContainer from './VideoContainer'
 
 const MainContainer = () => {
+    const [activeChip, setActiveChip] = useState('All')
+
     return (
-        <div className='col-span-11'>
-            <ButtonList></ButtonList>
-            <VideoContainer></VideoContainer>
+        <div style={{ paddingLeft: '24px', paddingRight: '12px' }}>
+            <ButtonList
+                activeChip={activeChip}
+                onChipClick={setActiveChip}
+            />
+            <VideoContainer activeChip={activeChip} />
         </div>
     )
 }
